@@ -12,18 +12,21 @@ int main(int argc, char *argv[])
 	int line_count = 0;
 	ssize_t line_size;
 	FILE *file;
+	//del
+	int idx = 0, idx = 0;
 
 	if (argc != 2)
 	{
-		err_usage();
+		fprintf(stderr, "USAGE: monty file");
+		exit(EXIT_FAILURE);
 	}
 
 	/* Open file in Read Only and check for error */
 	file = fopen(argv[1], "r");
-
 	if (!file)
 	{
-		err_file();
+		fprintf(stderr, "Error printing file");
+		exit(EXIT_FAILURE);
 	}
 
 	line_size = getline(&line_buf, &line_buf_size, file);
@@ -32,14 +35,19 @@ int main(int argc, char *argv[])
 	{
 		line_count++;
 
-		/* replace this code with the input processing */
-		process_line(line_buf, line_buf_size);
-
 		line_size = getline(&line_buf, &line_buf_size, file);
+		line_buf[line_size -1] = '\0';
+		printf("%s line count: <%i>\n", line_buf, line_count);
+
+		line_array = tokenizeInput(line_buf);
+
+		for(idx1 = 0; line_array[idx1] != NULL; idx1++)
+		{
+			printf("line_array[%i] <%s>\n", idx, line_array[idx]);
+		}
 	}
 
 	free(line_buf);
-	line_buf = NULL;
 	fclose(file);
 
 	return (0);
