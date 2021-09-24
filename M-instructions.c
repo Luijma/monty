@@ -13,7 +13,6 @@ void push(stack_t **head, unsigned int n)
 	/* add code to assign argument to n */
 
 	if (!new_node)
-		err_memory();
 		return;
 
 	if (!*head)
