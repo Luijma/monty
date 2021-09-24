@@ -52,5 +52,6 @@ void free_stacks(stack_t *head);
 void push(stack_t **head, unsigned int n);
 void pall(stack_t **head, unsigned int n);
 void pint(stack_t **head, unsigned int n);
+void pop(stack_t **head, unsigned int n);
 
 #endif /* MONTY_H */
