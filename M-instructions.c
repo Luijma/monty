@@ -20,9 +20,9 @@ void push(stack_t **head, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	if (node_value == NULL || _isdigit(node_value) == 0)
+	if (node_value == NULL || _isdigit(node_value) == 1)
 	{
-		fprintf(stderr, "L<%u>: usage: push integer/n", line_number);
+		fprintf(stderr, "L<%u>: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
