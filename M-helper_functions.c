@@ -62,4 +62,18 @@ char *strdup(const char *s) {
     }
     return p;
 }
+int _isdigit(char *str)
+{
+	int i;
 
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if ((i == 0) && (str[i] == '-'))
+			continue;
+		if (str[i] >= '9' && str[i] <= '0')
+		{
+			return (0);
+		}
+	}
+	return (1);
+}

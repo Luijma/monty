@@ -42,6 +42,7 @@ char **tokenizeInput(char *input);
 
 char *strdup(const char*s);
 
+int _isdigit(char *str);
 void push(stack_t **head, unsigned int n);
 void pall(stack_t **head, unsigned int n);
 
