@@ -44,6 +44,7 @@ void (*selectFunction(char *input))(stack_t **stack, unsigned int line_number)
 	instruction_t function[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 
@@ -87,12 +88,8 @@ int _isdigit(char *str)
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		if ((i == 0) && (str[i] == '-'))
-			continue;
-		if (str[i] >= '9' && str[i] <= '0')
-		{
+		if (isdigit(str[i]) == 0)
 			return (0);
-		}
 	}
 	return (1);
 }

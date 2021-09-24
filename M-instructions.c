@@ -12,15 +12,12 @@ void push(stack_t **head, unsigned int line_number)
 
 	new_node = malloc(sizeof(stack_t));
 
-	/* add code to assign argument to n */
-
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-
-	if (node_value == NULL || _isdigit(node_value) == 1)
+	if (node_value == NULL || _isdigit(node_value) == 0)
 	{
 		fprintf(stderr, "L<%u>: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -56,4 +53,13 @@ void pall(stack_t **head, unsigned int n __attribute__((unused)))
 		printf("%d\n", (*head)->n);
 		*head = (*head)->next;
 	}
+}
+void pint(stack_t **head, unsigned int n)
+{
+	if (!*head)
+	{
+		fprintf(stderr, "L<%d>: cant pint, stack empty\n", n);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*head)->n);
 }

@@ -45,5 +45,6 @@ char *strdup(const char *s);
 int _isdigit(char *str);
 void push(stack_t **head, unsigned int n);
 void pall(stack_t **head, unsigned int n);
+void pint(stack_t **head, unsigned int n);
 
 #endif /* MONTY_H */
