@@ -8,14 +8,11 @@
 int main(int argc, char *argv[])
 {
 	char line_buf[1000], **line_array;
-	size_t line_buf_size = 0;
 	int line_count = 0;
-	ssize_t line_size;
+	size_t line_size;
 	FILE *file;
 	void (*func_ptr)(stack_t **, unsigned int) = NULL;
 	stack_t *stack = NULL;
-	//del
-	int idx = 0;
 
 	if (argc != 2)
 	{
@@ -27,7 +24,7 @@ int main(int argc, char *argv[])
 	file = fopen(argv[1], "r");
 	if (!file)
 	{
-		fprintf(stderr, "Error printing file");
+		fprintf(stderr, "Error printing file\n");
 		exit(EXIT_FAILURE);
 	}
 

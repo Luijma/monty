@@ -1,4 +1,6 @@
 #include "monty.h"
+#include <stdlib.h>
+#include <string.h>
 /**
  * process_line - adds commands and parameters to array
  * @line - line to be tokenized
@@ -33,22 +35,9 @@ char **tokenizeInput(char *input)
 }
 void (*selectFunction(char *input))(stack_t **stack, unsigned int line_number)
 {
-	instruction_t function = {
+	instruction_t function[] = {
 		{"push", push},
 		{"pall", pall},
-		/*
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
-		{"mul", mul},
-		{"sub", sub},
-		{"nop", nop},
-		{"div", _div},
-		{"mod", mod},
-		{"pchar", pchar},
-		{"pstr", pstr},
-		*/
 		{NULL, NULL}
 	};
 
@@ -65,3 +54,12 @@ void (*selectFunction(char *input))(stack_t **stack, unsigned int line_number)
 
 	return (function[idx].f);
 }
+char *strdup(const char *s) {
+    size_t size = strlen(s) + 1;
+    char *p = malloc(size);
+    if (p != NULL) {
+        memcpy(p, s, size);
+    }
+    return p;
+}
+

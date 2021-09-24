@@ -4,16 +4,28 @@
  * @stack: stack to push elemnt to
  * Return: returns pointer to the top of the stack
  */
-void push(stack_t **head, unsigned int n)
+void push(stack_t **head, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
+	int n;
 
 	new_node = malloc(sizeof(stack_t));
 
 	/* add code to assign argument to n */
 
 	if (!new_node)
-		return;
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if (node_value == NULL || !isdigit(node_value))
+	{
+		fprintf(stderr, "L<%u>: usage: push integer/n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	n = atoi(node_value);
 
 	if (!*head)
 	{
