@@ -1,7 +1,8 @@
 #include "monty.h"
 /**
  * push - pushes an element to the stack (adds begin)
- * @stack: stack to push elemnt to
+ * @head: stack to push elemnt to
+ * @line_number: line number for error
  * Return: returns pointer to the top of the stack
  */
 void push(stack_t **head, unsigned int line_number)
@@ -43,6 +44,11 @@ void push(stack_t **head, unsigned int line_number)
 		*head = new_node;
 	}
 }
+/**
+ * pall - prints all stack members
+ * @head: head of list
+ * @n: unused number
+ */
 void pall(stack_t **head, unsigned int n __attribute__((unused)))
 {
 	while (*head)

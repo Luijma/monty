@@ -20,7 +20,6 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	/* Open file in Read Only and check for error */
 	file = fopen(argv[1], "r");
 	if (!file)
 	{
@@ -31,16 +30,12 @@ int main(int argc, char *argv[])
 	while (fgets(line_buf, sizeof(line_buf), file) != NULL)
 	{
 		line_count++;
-
 		line_size = strlen(line_buf);
-		line_buf[line_size -1] = '\0';
-		printf("%s\n", line_buf);
-
+		line_buf[line_size - 1] = '\0';
 		line_array = tokenizeInput(line_buf);
 		node_value = line_array[1];
 
 		func_ptr = selectFunction(line_array[0]);
-
 		if (!(func_ptr))
 		{
 			fprintf(stderr, "pending function pointer error\n");
@@ -49,8 +44,6 @@ int main(int argc, char *argv[])
 		}
 		func_ptr(&stack, line_count);
 	}
-
 	fclose(file);
-
 	return (0);
 }
