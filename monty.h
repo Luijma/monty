@@ -40,9 +40,15 @@ char *node_value;
 void (*selectFunction(char *input))(stack_t **stack, unsigned int line_number);
 char **tokenizeInput(char *input);
 
-char *strdup(const char *s);
 
+void file_loop(char *line_buf, FILE file, int line_count,
+		size_t line_size, char **line_array,
+		void (*func_ptr)(stack_t **, unsigned int));
+
+char *strdup(const char *s);
 int _isdigit(char *str);
+void free_stacks(stack_t *head);
+
 void push(stack_t **head, unsigned int n);
 void pall(stack_t **head, unsigned int n);
 void pint(stack_t **head, unsigned int n);

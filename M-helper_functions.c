@@ -61,7 +61,7 @@ void (*selectFunction(char *input))(stack_t **stack, unsigned int line_number)
 
 	return (function[idx].f);
 }
-/*
+/**
  * strdup - duplicates a string
  * @s: string to duplicate
  * Return: duplicated string
@@ -92,4 +92,19 @@ int _isdigit(char *str)
 			return (0);
 	}
 	return (1);
+}
+/**
+ * free_stacks - frees a stack
+ * @head: top of stack to free
+ */
+void free_stacks(stack_t *head)
+{
+	if (!head)
+		return;
+	while (head->next)
+	{
+		head = head->next;
+		free(head->prev);
+	}
+	free(head);
 }

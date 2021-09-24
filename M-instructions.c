@@ -56,6 +56,11 @@ void pall(stack_t **head, unsigned int n __attribute__((unused)))
 		temp = temp->next;
 	}
 }
+/**
+ * pint - prints top of stack
+ * @head: head of stack to print
+ * @n: line number for error
+ */
 void pint(stack_t **head, unsigned int n)
 {
 	if (!*head)

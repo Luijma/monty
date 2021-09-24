@@ -19,14 +19,12 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
 	file = fopen(argv[1], "r");
 	if (!file)
 	{
 		fprintf(stderr, "Error printing file\n");
 		exit(EXIT_FAILURE);
 	}
-
 	while (fgets(line_buf, sizeof(line_buf), file) != NULL)
 	{
 		line_count++;
@@ -44,6 +42,7 @@ int main(int argc, char *argv[])
 		}
 		func_ptr(&stack, line_count);
 	}
+	free_stacks(stack);
 	fclose(file);
 	return (0);
 }
