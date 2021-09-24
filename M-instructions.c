@@ -63,7 +63,7 @@ void pall(stack_t **head, unsigned int n __attribute__((unused)))
  */
 void pint(stack_t **head, unsigned int n)
 {
-	if (!*head)
+	if (!*head || *(head))
 	{
 		fprintf(stderr, "L<%d>: cant pint, stack empty\n", n);
 		exit(EXIT_FAILURE);
@@ -74,7 +74,7 @@ void pop(stack_t **head, unsigned int n)
 {
 	stack_t *temp;
 
-	if (!head)
+	if (!head || !(*head))
 	{
 		fprintf(stderr, "L<%d>: can't pop an empty stack\n", n);
 		exit(EXIT_FAILURE);
