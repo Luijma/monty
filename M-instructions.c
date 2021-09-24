@@ -49,6 +49,7 @@ void push(stack_t **head, unsigned int line_number)
 void pall(stack_t **head, unsigned int n __attribute__((unused)))
 {
 	stack_t *temp = *head;
+
 	while (temp)
 	{
 		printf("%d\n", temp->n);
