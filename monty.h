@@ -36,9 +36,8 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+char *node_value;
 
-void err_usage(void);
-void err_file(void);
-void err_memory(void);
+char **tokenizeInput(char *input);
 
 #endif /* MONTY_H */

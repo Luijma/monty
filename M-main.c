@@ -7,17 +7,19 @@
  */
 int main(int argc, char *argv[])
 {
-	char *line_buf = NULL;
+	char line_buf[1000], **line_array;
 	size_t line_buf_size = 0;
 	int line_count = 0;
 	ssize_t line_size;
 	FILE *file;
+	void (*func_ptr)(stack_t **, unsigned int) = NULL;
+	stack_t *stack = NULL;
 	//del
-	int idx = 0, idx = 0;
+	int idx = 0;
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE: monty file");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -29,25 +31,28 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	line_size = getline(&line_buf, &line_buf_size, file);
-
-	while (line_size >= 0)
+	while (fgets(line_buf, sizeof(line_buf), file) != NULL)
 	{
 		line_count++;
 
-		line_size = getline(&line_buf, &line_buf_size, file);
+		line_size = strlen(line_buf);
 		line_buf[line_size -1] = '\0';
-		printf("%s line count: <%i>\n", line_buf, line_count);
+		printf("%s\n", line_buf);
 
 		line_array = tokenizeInput(line_buf);
+		node_value = line_array[1];
 
-		for(idx1 = 0; line_array[idx1] != NULL; idx1++)
+		func_ptr = selectFunction(line_array[0]);
+
+		if (!(func_ptr))
 		{
-			printf("line_array[%i] <%s>\n", idx, line_array[idx]);
+			fprintf(stderr, "pending function pointer error\n");
+			fclose(file);
+			exit(EXIT_FAILURE);
 		}
+		func_ptr(&stack, line_count);
 	}
 
-	free(line_buf);
 	fclose(file);
 
 	return (0);
