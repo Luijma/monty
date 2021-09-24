@@ -48,10 +48,11 @@ void push(stack_t **head, unsigned int line_number)
  */
 void pall(stack_t **head, unsigned int n __attribute__((unused)))
 {
-	while (*head)
+	stack_t *temp = *head;
+	while (temp)
 	{
-		printf("%d\n", (*head)->n);
-		*head = (*head)->next;
+		printf("%d\n", temp->n);
+		temp = temp->next;
 	}
 }
 void pint(stack_t **head, unsigned int n)
