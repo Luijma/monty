@@ -16,6 +16,7 @@ void push(stack_t **head, unsigned int line_number __attribute__((unused)))
 	{
 		global_info.err_state = 1;
 		global_info.err_info = "malloc_error";
+		free(new_node);
 		return;
 	}
 	if (global_info.node_value == NULL || _isdigit(global_info.node_value) == 0)

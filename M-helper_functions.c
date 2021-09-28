@@ -99,12 +99,18 @@ int _isdigit(char *str)
  */
 void free_stacks(stack_t *head)
 {
+	stack_t *curr = head;
+	stack_t *next;
+
 	if (!head)
 		return;
-	while (head->next)
+
+	next = head->next;
+	while (curr)
 	{
-		head = head->next;
-		free(head->prev);
+		free(curr);
+		curr = next;
+		if (next)
+			next = next->next;
 	}
-	free(head);
 }

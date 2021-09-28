@@ -42,10 +42,12 @@ int main(int argc, char *argv[])
 		global_info.ef(line_count);
 		free_stacks(stack);
 		fclose(file);
+		free(line_array);
 		exit(EXIT_FAILURE);
 	}
 	free_stacks(stack);
 	fclose(file);
+	free(line_array);
 	return (0);
 }
 /**
@@ -69,7 +71,10 @@ void file_error(unsigned int n __attribute__((unused)))
 void initial_errors(FILE *file, int argc, char *argv[])
 {
 	if (argc != 2)
+	{
+		fclose(file);
 		monty_usage_error(0);
+	}
 	global_info.node_value = argv[1];
 	if (!file)
 		file_error(0);
