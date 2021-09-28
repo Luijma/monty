@@ -17,8 +17,7 @@ char **tokenizeInput(char *input)
 
 	if (input_array == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
 	temp = strdup(input);
 	token = strtok(temp, space);

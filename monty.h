@@ -36,14 +36,38 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-char *node_value;
+/**
+ * struct error_s - struct used for error handling
+ * @opcode: the string used to select fpointer
+ * @f: function pointer for errors
+ */
+typedef struct error_s
+{
+	char *opcode;
+	void (*f)(unsigned int line_number);
+} error_t;
+
+/**
+ * struct status_s - used to track arguments and error info
+ * @node_value: the argument passed to commands
+ * @err_state: 1 if error, 0 if no error
+ * @err_info: char with error type
+ * @ef: function pointer to correct error function
+ * @command: command that is going to be executed
+ */
+typedef struct status_s
+{
+	char *node_value;
+	char *command;
+	int err_state;
+	char *err_info;
+	void (*ef)(unsigned int line_number);
+} status_t;
+
+status_t global_info;
+
 void (*selectFunction(char *input))(stack_t **stack, unsigned int line_number);
 char **tokenizeInput(char *input);
-
-
-void file_loop(char *line_buf, FILE file, int line_count,
-		size_t line_size, char **line_array,
-		void (*func_ptr)(stack_t **, unsigned int));
 
 char *strdup(const char *s);
 int _isdigit(char *str);
@@ -53,5 +77,13 @@ void push(stack_t **head, unsigned int n);
 void pall(stack_t **head, unsigned int n);
 void pint(stack_t **head, unsigned int n);
 void pop(stack_t **head, unsigned int n);
+
+void error_handler(void);
+void initial_errors(FILE *file, int argc, char *argv[]);
+void push_error(unsigned int line_number);
+void unknown_instruction(unsigned int line_number);
+void pint_error(unsigned int line_number);
+void malloc_error(unsigned int line_number);
+void pop_error(unsigned int line_number);
 
 #endif /* MONTY_H */

@@ -5,7 +5,7 @@
  * @line_number: line number for error
  * Return: returns pointer to the top of the stack
  */
-void push(stack_t **head, unsigned int line_number)
+void push(stack_t **head, unsigned int line_number __attribute__((unused)))
 {
 	stack_t *new_node = NULL;
 	int n;
@@ -14,16 +14,19 @@ void push(stack_t **head, unsigned int line_number)
 
 	if (!new_node)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		global_info.err_state = 1;
+		global_info.err_info = "malloc_error";
+		return;
 	}
-	if (node_value == NULL || _isdigit(node_value) == 0)
+	if (global_info.node_value == NULL || _isdigit(global_info.node_value) == 0)
 	{
-		fprintf(stderr, "L<%u>: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		global_info.err_info = "push_error";
+		global_info.err_state = 1;
+		free(new_node);
+		return;
 	}
 
-	n = atoi(node_value);
+	n = atoi(global_info.node_value);
 
 	if (!*head)
 	{
@@ -61,23 +64,30 @@ void pall(stack_t **head, unsigned int n __attribute__((unused)))
  * @head: head of stack to print
  * @n: line number for error
  */
-void pint(stack_t **head, unsigned int n)
+void pint(stack_t **head, unsigned int n __attribute__((unused)))
 {
 	if (!*head || !*(head))
 	{
-		fprintf(stderr, "L<%d>: cant pint, stack empty\n", n);
-		exit(EXIT_FAILURE);
+		global_info.err_state = 1;
+		global_info.err_info = "pint_error";
+		return;
 	}
 	printf("%d\n", (*head)->n);
 }
-void pop(stack_t **head, unsigned int n)
+/**
+ * pop - removes top of list
+ * @head: head of list
+ * @n: line number for error
+ */
+void pop(stack_t **head, unsigned int n __attribute__((unused)))
 {
 	stack_t *temp;
 
 	if (!head || !(*head))
 	{
-		fprintf(stderr, "L<%d>: can't pop an empty stack\n", n);
-		exit(EXIT_FAILURE);
+		global_info.err_state = 1;
+		global_info.err_info = "pop_error";
+		return;
 	}
 	temp = *head;
 	*head = (*head)->next;
