@@ -40,15 +40,11 @@ int main(int argc, char *argv[])
 	{
 		error_handler();
 		global_info.ef(line_count);
-		free_stacks(stack);
-		fclose(file);
-		free(line_array);
-		exit(EXIT_FAILURE);
 	}
 	free_stacks(stack);
 	fclose(file);
 	free(line_array);
-	return (0);
+	return (global_info.err_state);
 }
 /**
  * monty_usage_error - error handling for usage error
@@ -68,6 +64,12 @@ void file_error(unsigned int n __attribute__((unused)))
 	fprintf(stderr, "Error: Can't open file <%s>\n", global_info.node_value);
 	exit(EXIT_FAILURE);
 }
+/**
+ * initial_errors - handles the initial file creation errors
+ * @file: file to open
+ * @argc: count of arguments
+ * @argv: array of arguments
+ */
 void initial_errors(FILE *file, int argc, char *argv[])
 {
 	if (argc != 2)
