@@ -77,6 +77,7 @@ void push(stack_t **head, unsigned int n);
 void pall(stack_t **head, unsigned int n);
 void pint(stack_t **head, unsigned int n);
 void pop(stack_t **head, unsigned int n);
+void swap(stack_t **head, unsigned int n);
 
 void error_handler(void);
 void initial_errors(FILE *file, int argc, char *argv[]);
@@ -85,5 +86,6 @@ void unknown_instruction(unsigned int line_number);
 void pint_error(unsigned int line_number);
 void malloc_error(unsigned int line_number);
 void pop_error(unsigned int line_number);
+void swap_error(unsigned int line_number);
 
 #endif /* MONTY_H */

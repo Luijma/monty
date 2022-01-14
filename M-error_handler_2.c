@@ -7,3 +7,7 @@ void pop_error(unsigned int n)
 {
 	fprintf(stderr, "L<%d>: can't pop an empty stack\n", n);
 }
+void swap_error(unsigned int n)
+{
+	fprintf(stderr, "L<%d>: can't swap, stack too short\n", n);
+}

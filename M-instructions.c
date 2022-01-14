@@ -94,3 +94,29 @@ void pop(stack_t **head, unsigned int n __attribute__((unused)))
 	*head = (*head)->next;
 	free(temp);
 }
+/**
+ * swap - swaps the top two elements of a stack
+ * @head: head of list
+ * @n: line number for error
+ */
+void swap(stack_t **head, unsigned int n __attribute__((unused)))
+{
+	stack_t *temp_A;
+	stack_t *temp_B;
+
+	if (!head || !(*head) || !(*head)->next)
+	{
+		global_info.err_state = 1;
+		global_info.err_info = "swap_error";
+		return;
+	}
+	temp_B = *head;
+	temp_A = (*head)->next;
+	temp_B->next = temp_A->next;
+	temp_A->next = temp_B;
+	temp_A->prev = temp_B->prev;
+	temp_B->prev = temp_A;
+	if (temp_B->next)
+		temp_B->next->prev = temp_B;
+	(*head) = temp_A;
+}

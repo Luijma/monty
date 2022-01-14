@@ -10,6 +10,7 @@ void error_handler(void)
 		{"push_error", push_error},
 		{"pint_error", pint_error},
 		{"pop_error", pop_error},
+		{"swap_error", swap_error},
 		{"unknown_instruction", unknown_instruction},
 		{NULL, NULL}
 	};
