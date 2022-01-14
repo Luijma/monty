@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 	if (argc == 2)
 		file = fopen(argv[1], "r");
 	initial_errors(file, argc, argv);
-	while (fgets(line_buf, sizeof(line_buf), file) != NULL &&
-			!global_info.err_state)
+	while (!global_info.err_state &&
+			fgets(line_buf, sizeof(line_buf), file) != NULL)
 	{
 		line_count++;
 		line_size = strlen(line_buf);
@@ -74,8 +74,9 @@ void initial_errors(FILE *file, int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		fclose(file);
-		monty_usage_error(0);
+		global_info.err_state = 1;
+		global_info.err_info = "monty_error";
+		return;
 	}
 	global_info.node_value = argv[1];
 	if (!file)

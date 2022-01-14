@@ -87,5 +87,6 @@ void pint_error(unsigned int line_number);
 void malloc_error(unsigned int line_number);
 void pop_error(unsigned int line_number);
 void swap_error(unsigned int line_number);
+void monty_error(unsigned int line_number);
 
 #endif /* MONTY_H */

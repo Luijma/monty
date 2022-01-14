@@ -12,6 +12,7 @@ void error_handler(void)
 		{"pop_error", pop_error},
 		{"swap_error", swap_error},
 		{"unknown_instruction", unknown_instruction},
+		{"monty_error", monty_error},
 		{NULL, NULL}
 	};
 
